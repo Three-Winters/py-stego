@@ -33,7 +33,7 @@ class EmbedData():
 						l[b][r] ^= swap
 						#l[b][r] = ((byte ^ l[b][r]) & (1<<bit))
 						bit += 1
-		#l[b+1][r] = 128
-		#l[b+2][r] = 64
-		#l[b+3][r] = 32
+		l[b+1][r] = 128
+		l[b+2][r] = 64
+		l[b+3][r] = 32
 		return(l)

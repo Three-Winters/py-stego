@@ -1,32 +1,34 @@
+from itertools import tee
+
 class ExtractData():
 	def __init__(self, cover):
 		self.cover = cover
+		self.data = cover[2]
 
-	def find_end(self, height, width):
-		l=list(self.cover[2])
+	def find_end(self, height, width, data):
 		r=0
 		b=0
-		while r < height:
+		while r+1 < height:
 			if b+1 < width:
-				if l[b][r] == 128:
-					if l[b+1][r] == 64 and l[b+2][r] == 32:
-						return((b+1)*(r+1))
+				if data[b][r] == 128:
+					if data[b+1][r] == 64 and data[b+2][r] == 32:
+						return((b)*(r))
 				b += 1
 			else:
-				if l[b][r] == 128:
-					if l[b+1][r] == 64 and l[b+2][r] == 32:
+				if data[b][r] == 128:
+					if data[b+1][r] == 64 and data[b+2][r] == 32:
 						return((b+1)*(r+1))
 				b = 0
 				r += 1
+		return(0)
 
 
 	def lsb(self):
 		height = self.cover[0]
 		width = self.cover[1]
-		#ls = self.find_end(height, width)
-		ls = 1927
-		#ls = 156
 		l=list(self.cover[2])
+		ls = self.find_end(height, width, l)
+
 		data = bytearray(ls)
 		a = b''
 
