@@ -22,6 +22,8 @@ def main():
 
 		cover = ReadFile(embed)
 		cover_data = cover.read()
+		if not cover_data:
+			return(1)
 
 		secret = ReadFile(secret)
 		secret_data = secret.read()
@@ -29,9 +31,11 @@ def main():
 		e = EmbedData(cover_data, secret_data)
 		if method == 'lsb':
 			e_image_data = e.lsb()
+			if not e_image_data:
+				return(1)
 		else:
 			print("Unknown method supplied, aborting.")
-			return(0)
+			return(1)
 
 		if not output.endswith('.png'):
 			output += '.png'
@@ -40,6 +44,8 @@ def main():
 	else:
 		e_cover = ReadFile(extract)
 		e_cover_d = e_cover.read()
+		if not e_cover_d:
+			return(1)
 		ext = ExtractData(e_cover_d)
 		if method == 'lsb':
 			hidden_data = ext.lsb()

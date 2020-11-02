@@ -24,6 +24,7 @@ class ReadFile():
 			r = png.Reader(file=open(self.f, 'rb'))
 		except FileNotFoundError:
 			print("Invalid file: "+self.f)
+			return(0)
 
 		data = r.read()
 		return(data)

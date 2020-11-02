@@ -28,6 +28,8 @@ class ExtractData():
 		width = self.cover[1]
 		l=list(self.cover[2])
 		ls = self.find_end(height, width, l)
+		if not ls:
+			print("Secret end magic bytes not found!")
 
 		data = bytearray(ls)
 		a = b''
